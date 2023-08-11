@@ -64,6 +64,6 @@ export interface IFilePickerButton extends Omit<IDialogButton, 'callback'> {
 export type IFilePickerButtonFactory = (selectedNodes: Node[], currentPath: string, currentView: string) => IFilePickerButton[]
 
 /**
-* Type of filter functions to filter the FilePicker's file list
-*/
+ * Type of filter functions to filter the FilePicker's file list
+ */
 export type IFilePickerFilter = (node: Node) => boolean

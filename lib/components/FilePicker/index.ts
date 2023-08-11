@@ -20,7 +20,7 @@
  *
  */
 
-import type { AsyncComponent } from 'vue'
+import type { Component } from 'vue'
 import type { DefaultComputed, DefaultData, DefaultMethods } from 'vue/types/options.js'
 import { defineAsyncComponent } from 'vue'
 
@@ -42,4 +42,4 @@ type IFilePickerProps = (typeof import ('./FilePicker.vue').default)['props']
  *   }]
  * </script>
  */
-export const FilePickerVue = defineAsyncComponent(() => import('./FilePicker.vue')) as AsyncComponent<DefaultData<never>, DefaultMethods<never>, DefaultComputed, IFilePickerProps>
+export const FilePickerVue = defineAsyncComponent(() => import('./FilePicker.vue')) as Component<DefaultData<never>, DefaultMethods<never>, DefaultComputed, IFilePickerProps>

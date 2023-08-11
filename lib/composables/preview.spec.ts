@@ -59,7 +59,7 @@ describe('preview composable', () => {
 					return () => h('div', previewURL.value?.href)
 				},
 			}), {
-				propsData: { node: text },
+				props: { node: text },
 			})
 
 			expect(wrapper.text()).toMatch('/core/preview?fileId=1')

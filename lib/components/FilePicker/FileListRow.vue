@@ -13,10 +13,10 @@
 		}">
 		<td v-if="showCheckbox" class="row-checkbox" @click.stop="() => {/* Stop the click event */}">
 			<NcCheckboxRadioSwitch :aria-label="t('Select the row for {nodename}', { nodename: displayName })"
-				:checked="selected"
+				:model-value="selected"
 				:disabled="!isPickable"
 				data-testid="row-checkbox"
-				@update:checked="toggleSelected" />
+				@update:model-value="toggleSelected" />
 		</td>
 		<td class="row-name">
 			<div class="file-picker__name-container" data-testid="row-name">

@@ -73,7 +73,7 @@ export default defineConfig((env) => {
 		},
 		// Rollup our type definitions to only publish what it needed
 		DTSPluginOptions: {
-			rollupTypes: env.mode === 'production',
+			rollupTypes: false, // env.mode === 'production',
 		},
 	})(env)
 }) as UserConfigFn

@@ -22,7 +22,7 @@
 
 import { describe, it, expect, vi, afterEach, beforeAll, afterAll } from 'vitest'
 import { shallowMount } from '@vue/test-utils'
-import { defineComponent, nextTick } from 'vue'
+import { defineComponent, h, nextTick } from 'vue'
 import { useFilesSettings } from './filesSettings'
 
 const axios = vi.hoisted(() => ({
@@ -40,7 +40,7 @@ const TestComponent = defineComponent({
 			...settings,
 		}
 	},
-	render: (h) => h('div'),
+	render: () => h('div'),
 })
 
 describe('files app settings composable', () => {

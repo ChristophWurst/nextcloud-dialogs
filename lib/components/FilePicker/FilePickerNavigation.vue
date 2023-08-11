@@ -2,10 +2,10 @@
 	<Fragment>
 		<!-- Filter for the file list -->
 		<NcTextField class="file-picker__filter-input"
-			:value="filterString"
+			:model-value="filterString"
 			:label="t('Filter file list')"
 			:show-trailing-button="!!filterString"
-			@update:value="updateFilterValue"
+			@update:model-value="updateFilterValue"
 			@trailing-button-click="updateFilterValue('')">
 			<IconMagnify :size="16" />
 			<template #trailing-button-icon>
@@ -33,7 +33,7 @@
 				:searchable="false"
 				:options="availableViews"
 				:value="currentViewObject"
-				@input="(v) => emit('update:currentView', v.id)" />
+				@update:model-value="(v) => emit('update:currentView', v.id)" />
 		</template>
 	</Fragment>
 </template>
