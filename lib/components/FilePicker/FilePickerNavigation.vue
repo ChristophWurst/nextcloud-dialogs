@@ -44,8 +44,7 @@ import IconMagnify from 'vue-material-design-icons/Magnify.vue'
 
 import { getCurrentUser } from '@nextcloud/auth'
 import { NcButton, NcIconSvgWrapper, NcSelect, NcTextField } from '@nextcloud/vue'
-import { computed, ref } from 'vue'
-import { Fragment } from 'vue-frag'
+import { computed, ref, Fragment } from 'vue'
 import { t } from '../../utils/l10n'
 import { useViews } from '../../composables/views'
 
