@@ -10,6 +10,12 @@
 				"func-call-spacing": "off",
 				"@typescript-eslint/func-call-spacing": "error"
 			}
+		},
+		{
+			"files": ["tests/**"],
+			"rules": {
+				"n/no-extraneous-import": "off"
+			}
 		}
 	]
 }

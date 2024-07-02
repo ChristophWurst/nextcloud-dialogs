@@ -1,0 +1,8 @@
+{
+	"extends": "..",
+	"include": [".", "../*.ts"],
+	"compilerOptions": {
+		"rootDir": "..",
+		"noEmit": true
+	}
+}
