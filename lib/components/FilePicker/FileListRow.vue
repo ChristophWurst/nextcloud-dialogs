@@ -41,9 +41,11 @@
 import type { Node } from '@nextcloud/files'
 
 import { formatFileSize, FileType } from '@nextcloud/files'
-import { NcCheckboxRadioSwitch, NcDateTime } from '@nextcloud/vue'
 import { computed } from 'vue'
 import { t } from '../../utils/l10n'
+
+import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
+import NcDateTime from '@nextcloud/vue/dist/Components/NcDateTime.js'
 
 import FilePreview from './FilePreview.vue'
 

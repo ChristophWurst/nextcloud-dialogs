@@ -10,6 +10,7 @@
 		content-classes="file-picker__content"
 		dialog-classes="file-picker"
 		navigation-classes="file-picker__navigation"
+		:navigation-aria-label="t('Views')"
 		:open.sync="isOpen"
 		@update:open="handleClose">
 		<template #navigation="{ isCollapsed }">
@@ -64,19 +65,20 @@ import type { Node } from '@nextcloud/files'
 import type { IFilePickerButton, IFilePickerButtonFactory, IFilePickerFilter } from '../types.ts'
 import type { IFilesViewId } from '../../composables/views.ts'
 
-import IconFile from 'vue-material-design-icons/File.vue'
-import FileList from './FileList.vue'
-import FilePickerBreadcrumbs from './FilePickerBreadcrumbs.vue'
-import FilePickerNavigation from './FilePickerNavigation.vue'
-
 import { emit as emitOnEventBus } from '@nextcloud/event-bus'
-import { NcDialog, NcEmptyContent } from '@nextcloud/vue'
 import { computed, onMounted, ref, shallowRef, toRef, watch } from 'vue'
 import { showError } from '../../toast'
 import { useDAVFiles } from '../../composables/dav'
 import { useMimeFilter } from '../../composables/mime'
 import { useFilesSettings } from '../../composables/filesSettings'
 import { t } from '../../utils/l10n'
+
+import FileList from './FileList.vue'
+import FilePickerBreadcrumbs from './FilePickerBreadcrumbs.vue'
+import FilePickerNavigation from './FilePickerNavigation.vue'
+import IconFile from 'vue-material-design-icons/File.vue'
+import NcDialog from '@nextcloud/vue/dist/Components/NcDialog.js'
+import NcEmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent.js'
 
 const props = withDefaults(defineProps<{
 	/** Buttons to be displayed */
@@ -143,6 +145,49 @@ const emit = defineEmits<{
 const isOpen = ref(true)
 
 /**
+ * Name of the currently active view
+ */
+const currentView = ref<IFilesViewId>('files')
+
+/**
+ * Headline to be used on the current view
+ */
+const viewHeadline = computed(() => currentView.value === 'favorites' ? t('Favorites') : (currentView.value === 'recent' ? t('Recent') : ''))
+
+/**
+ * All currently selected files
+ */
+const selectedFiles = shallowRef<Node[]>([])
+
+/**
+ * The path the user manually navigated to using this filepicker instance
+ */
+const navigatedPath = ref('')
+// Save the navigated path to the session storage on change
+watch([navigatedPath], () => {
+	if (props.path === undefined && navigatedPath.value) {
+		window.sessionStorage.setItem('NC.FilePicker.LastPath', navigatedPath.value)
+	}
+	// Reset selected files
+	selectedFiles.value = []
+})
+
+const savedPath = window?.sessionStorage.getItem('NC.FilePicker.LastPath') || '/'
+/**
+ * The current path that should be picked from
+ */
+const currentPath = computed({
+	get: () => {
+		// Only use the path for the files view as favorites and recent only works on the root
+		return currentView.value === 'files' ? navigatedPath.value || props.path || savedPath : '/'
+	},
+	set: (path: string) => {
+		// forward setting the current path to the navigated path
+		navigatedPath.value = path
+	},
+})
+
+/**
  * Map buttons to Dialog buttons by wrapping the callback function to pass the selected files
  */
 const dialogButtons = computed(() => {
@@ -179,54 +224,6 @@ const handleButtonClick = async (callback: IFilePickerButton['callback'], nodes:
 	// Unlock close
 	isHandlingCallback = false
 }
-
-/**
- * Name of the currently active view
- */
-const currentView = ref<IFilesViewId>('files')
-
-/**
- * Headline to be used on the current view
- */
-const viewHeadline = computed(() => currentView.value === 'favorites' ? t('Favorites') : (currentView.value === 'recent' ? t('Recent') : ''))
-
-/**
- * All currently selected files
- */
-const selectedFiles = shallowRef<Node[]>([])
-
-/**
- * Last path navigated to using the file picker
- * (required as sessionStorage is not reactive)
- */
-const savedPath = ref(window?.sessionStorage.getItem('NC.FilePicker.LastPath') || '/')
-
-/**
- * The path the user manually navigated to using this filepicker instance
- */
-const navigatedPath = ref('')
-// Save the navigated path to the session storage on change
-watch([navigatedPath], () => {
-	if (props.path === undefined && navigatedPath.value) {
-		window.sessionStorage.setItem('NC.FilePicker.LastPath', navigatedPath.value)
-	}
-	// Reset selected files
-	selectedFiles.value = []
-})
-
-/**
- * The current path that should be picked from
- */
-const currentPath = computed({
-	get: () => {
-		// Only use the path for the files view as favorites and recent only works on the root
-		return currentView.value === 'files' ? navigatedPath.value || props.path || savedPath.value : '/'
-	},
-	set: (path: string) => {
-		// forward setting the current path to the navigated path
-		navigatedPath.value = path
-	},
-})
 
 /**
  * A string used to filter files in current view

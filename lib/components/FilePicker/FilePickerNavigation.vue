@@ -21,7 +21,8 @@
 			<ul v-if="!isCollapsed"
 				class="file-picker__side">
 				<li v-for="view in availableViews" :key="view.id">
-					<NcButton :type="currentView === view.id ? 'primary' : 'tertiary'"
+					<NcButton :aria-current="currentView === view.id ? 'location' : undefined"
+						:type="currentView === view.id ? 'primary' : 'tertiary'"
 						:wide="true"
 						@click="$emit('update:currentView', view.id)">
 						<template #icon>
@@ -43,15 +44,18 @@
 </template>
 
 <script setup lang="ts">
-import IconClose from 'vue-material-design-icons/Close.vue'
-import IconMagnify from 'vue-material-design-icons/Magnify.vue'
-
 import { getCurrentUser } from '@nextcloud/auth'
-import { NcButton, NcIconSvgWrapper, NcSelect, NcTextField } from '@nextcloud/vue'
 import { computed, ref } from 'vue'
 import { Fragment } from 'vue-frag'
 import { t } from '../../utils/l10n'
 import { useViews } from '../../composables/views'
+
+import IconClose from 'vue-material-design-icons/Close.vue'
+import IconMagnify from 'vue-material-design-icons/Magnify.vue'
+import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
+import NcIconSvgWrapper from '@nextcloud/vue/dist/Components/NcIconSvgWrapper.js'
+import NcSelect from '@nextcloud/vue/dist/Components/NcSelect.js'
+import NcTextField from '@nextcloud/vue/dist/Components/NcTextField.js'
 
 const props = defineProps<{
 	currentView: 'files' | 'recent' | 'favorites',

@@ -3,7 +3,7 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 <template>
-	<NcBreadcrumbs class="file-picker__breadcrumbs">
+	<NcBreadcrumbs :aria-label="t('Current path')" class="file-picker__breadcrumbs">
 		<template #default>
 			<NcBreadcrumb :name="t('All files')"
 				:title="t('Home')"
@@ -47,13 +47,16 @@
 <script setup lang="ts">
 import type Vue from 'vue'
 
+import { computed, ref } from 'vue'
+import { t } from '../../utils/l10n'
+
 import IconFolder from 'vue-material-design-icons/Folder.vue'
 import IconHome from 'vue-material-design-icons/Home.vue'
 import IconPlus from 'vue-material-design-icons/Plus.vue'
-
-import { NcActions, NcActionInput, NcBreadcrumbs, NcBreadcrumb } from '@nextcloud/vue'
-import { computed, ref } from 'vue'
-import { t } from '../../utils/l10n'
+import NcActions from '@nextcloud/vue/dist/Components/NcActions.js'
+import NcActionInput from '@nextcloud/vue/dist/Components/NcActionInput.js'
+import NcBreadcrumb from '@nextcloud/vue/dist/Components/NcBreadcrumb.js'
+import NcBreadcrumbs from '@nextcloud/vue/dist/Components/NcBreadcrumbs.js'
 
 const props = defineProps<{
 	/** Current path to display */

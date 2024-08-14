@@ -81,13 +81,15 @@ import type { Node } from '@nextcloud/files'
 import type { FileListViews } from '../../composables/filesSettings'
 
 import { FileType, FilesSortingMode, sortNodes } from '@nextcloud/files'
-import { NcButton, NcCheckboxRadioSwitch } from '@nextcloud/vue'
 import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue'
 import { useFilesSettings, useFilesViews } from '../../composables/filesSettings'
 import { t } from '../../utils/l10n'
 
 import IconSortAscending from 'vue-material-design-icons/MenuUp.vue'
 import IconSortDescending from 'vue-material-design-icons/MenuDown.vue'
+import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
+import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
+
 import LoadingTableRow from './LoadingTableRow.vue'
 import FileListRow from './FileListRow.vue'
 
