@@ -19,18 +19,18 @@
 				@click="emit('update:path', dir.path)" />
 		</template>
 		<template v-if="showMenu" #actions>
-			<NcActions :aria-label="t('Create directory')"
+			<NcActions v-model:open="actionsOpen"
+				:aria-label="t('Create directory')"
 				:force-menu="true"
 				:force-name="true"
 				:menu-name="t('New')"
-				:open.sync="actionsOpen"
 				type="secondary"
 				@close="newNodeName = ''">
 				<template #icon>
 					<IconPlus :size="20" />
 				</template>
 				<NcActionInput ref="nameInput"
-					:value.sync="newNodeName"
+					v-model:value="newNodeName"
 					:label="t('New folder')"
 					:placeholder="t('New folder name')"
 					@submit="onSubmit"

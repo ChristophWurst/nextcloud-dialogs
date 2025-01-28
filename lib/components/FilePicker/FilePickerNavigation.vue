@@ -6,10 +6,10 @@
 	<Fragment>
 		<!-- Filter for the file list -->
 		<NcTextField class="file-picker__filter-input"
-			:value="filterString"
+			:model-value="filterString"
 			:label="t('Filter file list')"
 			:show-trailing-button="!!filterString"
-			@update:value="updateFilterValue"
+			@update:model-value="updateFilterValue"
 			@trailing-button-click="updateFilterValue('')">
 			<IconMagnify :size="16" />
 			<template #trailing-button-icon>
@@ -37,7 +37,7 @@
 				:searchable="false"
 				:options="availableViews"
 				:value="currentViewObject"
-				@input="(v) => emit('update:currentView', v.id)" />
+				@update:model-value="v => emit('update:currentView', v.id)" />
 		</template>
 	</Fragment>
 </template>
@@ -48,8 +48,7 @@ import IconMagnify from 'vue-material-design-icons/Magnify.vue'
 
 import { getCurrentUser } from '@nextcloud/auth'
 import { NcButton, NcIconSvgWrapper, NcSelect, NcTextField } from '@nextcloud/vue'
-import { computed, ref } from 'vue'
-import { Fragment } from 'vue-frag'
+import { computed, ref, Fragment } from 'vue'
 import { t } from '../../utils/l10n'
 import { useViews } from '../../composables/views'
 

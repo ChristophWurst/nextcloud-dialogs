@@ -22,8 +22,8 @@ import type { IDialogButton } from './types'
 import { onMounted, onUnmounted } from 'vue'
 import { DialogSeverity } from './types'
 
-import NcDialog from '@nextcloud/vue/dist/Components/NcDialog.js'
-import NcNoteCard from '@nextcloud/vue/dist/Components/NcNoteCard.js'
+import NcDialog from '@nextcloud/vue/components/NcDialog'
+import NcNoteCard from '@nextcloud/vue/components/NcNoteCard'
 
 const props = defineProps<{
 	/**
