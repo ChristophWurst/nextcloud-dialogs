@@ -20,7 +20,7 @@ describe('views composable', () => {
 		const { availableViews, allViews } = useViews(ref(false))
 		expect(allViews.length).toBe(3)
 		expect(availableViews.length).toBe(3)
-		for(const view of allViews) {
+		for (const view of allViews) {
 			expect(availableViews.includes(view)).toBe(true)
 		}
 	})

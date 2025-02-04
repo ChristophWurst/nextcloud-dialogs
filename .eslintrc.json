@@ -1,5 +1,5 @@
 {
-	"extends": ["@nextcloud/eslint-config/typescript"],
+	"extends": ["@nextcloud/eslint-config/vue3"],
 	"overrides": [
 		// https://github.com/mysticatea/eslint-plugin-node/issues/248#issuecomment-1052550467
 		{

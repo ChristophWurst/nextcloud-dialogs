@@ -29,7 +29,7 @@ describe('FilePicker: FileListRow', () => {
 		const consoleError = vi.spyOn(console, 'error')
 
 		const wrapper = shallowMount(FileListRow, {
-			propsData: {
+			props: {
 				allowPickDirectory: true,
 				selected: false,
 				showCheckbox: true,
@@ -50,7 +50,7 @@ describe('FilePicker: FileListRow', () => {
 
 	it('shows checkbox based on `showCheckbox` property', async () => {
 		const wrapper = shallowMount(FileListRow, {
-			propsData: {
+			props: {
 				allowPickDirectory: true,
 				selected: false,
 				showCheckbox: true,
@@ -67,7 +67,7 @@ describe('FilePicker: FileListRow', () => {
 
 	it('Click checkbox triggers select', async () => {
 		const wrapper = shallowMount(FileListRow, {
-			propsData: {
+			props: {
 				allowPickDirectory: false,
 				selected: false,
 				showCheckbox: true,
@@ -75,9 +75,11 @@ describe('FilePicker: FileListRow', () => {
 				node,
 				cropImagePreviews: true,
 			},
-			stubs: {
-				NcCheckboxRadioSwitch: {
-					template: '<label><input type="checkbox" @click="$emit(\'update:checked\', true)" ></label>',
+			global: {
+				stubs: {
+					NcCheckboxRadioSwitch: {
+						template: '<label><input type="checkbox" @click="$emit(\'update:modelValue\', true)" ></label>',
+					},
 				},
 			},
 		})
@@ -90,7 +92,7 @@ describe('FilePicker: FileListRow', () => {
 
 	it('Click element triggers select', async () => {
 		const wrapper = shallowMount(FileListRow, {
-			propsData: {
+			props: {
 				allowPickDirectory: false,
 				selected: false,
 				showCheckbox: true,
@@ -108,7 +110,7 @@ describe('FilePicker: FileListRow', () => {
 
 	it('Click element without checkbox triggers select', async () => {
 		const wrapper = shallowMount(FileListRow, {
-			propsData: {
+			props: {
 				allowPickDirectory: false,
 				selected: false,
 				showCheckbox: false,
@@ -126,7 +128,7 @@ describe('FilePicker: FileListRow', () => {
 
 	it('Enter triggers select', async () => {
 		const wrapper = shallowMount(FileListRow, {
-			propsData: {
+			props: {
 				allowPickDirectory: false,
 				selected: false,
 				showCheckbox: false,

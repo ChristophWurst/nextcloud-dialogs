@@ -13,9 +13,9 @@
 						</span>
 						<NcCheckboxRadioSwitch v-if="multiselect"
 							:aria-label="t('Select all entries')"
-							:checked="allSelected"
+							:model-value="allSelected"
 							data-testid="select-all-checkbox"
-							@update:checked="onSelectAll" />
+							@update:model-value="onSelectAll" />
 					</th>
 					<th :aria-sort="sortByName" class="row-name">
 						<div class="header-wrapper">

@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-///<reference types="toastify-js" />
+/// <reference types="toastify-js" />
 
 import Toastify from 'toastify-js'
 import { t } from './utils/l10n.js'
@@ -114,7 +114,7 @@ export function showMessage(data: string|Node, options?: ToastOptions): Toast {
 		selector: undefined,
 		onRemove: () => { },
 		onClick: undefined,
-		close: true
+		close: true,
 	}, options)
 
 	if (typeof data === 'string' && !options.isHTML) {
