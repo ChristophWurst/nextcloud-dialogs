@@ -86,7 +86,7 @@
     "core-js": "^3.40.0",
     "gettext-extractor": "^3.8.0",
     "gettext-parser": "^8.0.0",
-    "happy-dom": "^16.8.1",
+    "happy-dom": "^17.1.0",
     "sass": "^1.85.0",
     "stylelint": "^15.11.0",
     "tslib": "^2.8.1",
